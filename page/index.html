@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="/ext-sdk.js"></script>
+  <style>
+    .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin: 14px 0; }
+    .problem { border-color: var(--hw-err); margin-bottom: 14px; }
+    .free { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  </style>
+</head>
+<body>
+  <h1 data-i18n="title"></h1>
+  <p class="hw-sub" data-i18n="sub"></p>
+  <div class="stats" id="stats"><div class="hw-skeleton" style="height:70px"></div></div>
+  <div id="conflicts"></div>
+  <div class="hw-card" id="table"></div>
+  <h2 class="hw-h2" data-i18n="freeTitle"></h2>
+  <div class="free" id="free"></div>
+  <script src="lib.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

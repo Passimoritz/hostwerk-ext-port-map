@@ -1,0 +1,38 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Passimoritz/hostwerk-public/main/sdk/manifest.schema.json",
+  "id": "port-map",
+  "color": "#0ea5e9",
+  "name": {
+    "de": "Port-Übersicht",
+    "en": "Port map"
+  },
+  "description": {
+    "de": "Alle Ports deiner Dienste in einer Liste: was läuft, was ein fremdes Programm blockiert, wo zwei Dienste denselben Port wollen – mit freien Vorschlägen.",
+    "en": "All ports of your services in one list: what runs, what another program blocks, where two services want the same port – with free suggestions."
+  },
+  "permissions": [
+    "read:system"
+  ],
+  "page": {
+    "title": {
+      "de": "Ports",
+      "en": "Ports"
+    },
+    "icon": "network",
+    "file": "page/index.html"
+  },
+  "widget": {
+    "title": {
+      "de": "Port-Konflikte",
+      "en": "Port conflicts"
+    },
+    "file": "widget/index.html",
+    "size": "third"
+  },
+  "version": "1.0.0",
+  "author": "Hostwerk",
+  "homepage": "https://github.com/Passimoritz/hostwerk-ext-port-map",
+  "license": "MIT",
+  "icon": "icon.svg",
+  "hostwerk": ">=2.9.0"
+}
