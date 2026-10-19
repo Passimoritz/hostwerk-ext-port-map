@@ -1,3 +1,5 @@
+![Port map](banner.svg)
+
 # Port map
 
 All ports of your services in one list: what runs, what another program blocks, where two services want the same port – with free suggestions.

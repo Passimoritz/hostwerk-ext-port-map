@@ -1,3 +1,5 @@
+![Port-Übersicht](banner.svg)
+
 # Port-Übersicht
 
 Alle Ports deiner Dienste in einer Liste: was läuft, was ein fremdes Programm blockiert, wo zwei Dienste denselben Port wollen – mit freien Vorschlägen.
