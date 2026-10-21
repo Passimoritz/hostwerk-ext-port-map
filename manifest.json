@@ -8,11 +8,13 @@
     "en": "Port map"
   },
   "description": {
-    "de": "Alle Ports deiner Dienste in einer Liste: was läuft, was ein fremdes Programm blockiert, wo zwei Dienste denselben Port wollen – mit freien Vorschlägen.",
-    "en": "All ports of your services in one list: what runs, what another program blocks, where two services want the same port – with free suggestions."
+    "de": "Alle Ports deiner Dienste in einer Liste: was läuft, was ein fremdes Programm blockiert, wo zwei Dienste denselben Port wollen, was im Router freigegeben ist – mit freien Vorschlägen zum Kopieren.",
+    "en": "All ports of your services in one list: what runs, what another program blocks, where two services want the same port, what the router forwards – with free suggestions to copy."
   },
   "permissions": [
-    "read:system"
+    "read:system",
+    "read:network",
+    "read:apps"
   ],
   "page": {
     "title": {
@@ -22,8 +24,12 @@
     "icon": "network",
     "file": "page/index.html",
     "description": {
-      "de": "Alle Ports deiner Dienste in einer Liste: was läuft, was ein fremdes Programm blockiert, wo zwei Dienste denselben Port wollen – mit freien Vorschlägen.",
-      "en": "All ports of your services in one list: what runs, what another program blocks, where two services want the same port – with free suggestions."
+      "de": "Alle Ports deiner Dienste in einer Liste: was läuft, was ein fremdes Programm blockiert, wo zwei Dienste denselben Port wollen, was im Router freigegeben ist – mit freien Vorschlägen zum Kopieren.",
+      "en": "All ports of your services in one list: what runs, what another program blocks, where two services want the same port, what the router forwards – with free suggestions to copy."
+    },
+    "nav": {
+      "group": "system",
+      "after": "system"
     }
   },
   "widget": {
@@ -34,11 +40,25 @@
     "file": "widget/index.html",
     "size": "third"
   },
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": "Hostwerk",
   "homepage": "https://github.com/Passimoritz/hostwerk-ext-port-map",
   "license": "MIT",
   "icon": "icon.svg",
   "banner": "banner.svg",
-  "hostwerk": ">=2.9.0"
+  "hostwerk": ">=2.11.0",
+  "allowExtensions": {
+    "*": [
+      "tabs"
+    ]
+  },
+  "synergies": [
+    {
+      "with": "router",
+      "title": {
+        "de": "Zeigt, welche Ports der Router von außen freigibt",
+        "en": "Shows which ports the router forwards from outside"
+      }
+    }
+  ]
 }

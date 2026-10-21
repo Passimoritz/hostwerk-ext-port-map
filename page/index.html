@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="/ext-sdk.js"></script>
   <style>
-    .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin: 14px 0; }
-    .problem { border-color: var(--err); margin-bottom: 14px; }
-    .free { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: var(--sp-3); margin: var(--sp-3) 0; }
+    .problem { border-color: var(--err); margin-bottom: var(--sp-3); gap: var(--sp-2); }
+    .conflicts-title { margin: 0; font-size: var(--fs-md); }
+    .conflict { gap: var(--sp-2); }
+    .table-note { margin: var(--sp-2) 0 0; }
+    .section-head { margin: var(--sp-5) 0 var(--sp-2); font-size: var(--fs-md); }
+    .free { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--sp-3); }
+    .free-card { gap: var(--sp-2); }
+    .free-list { flex-wrap: wrap; }
   </style>
 </head>
 <body>
@@ -15,8 +21,10 @@
   <div class="stats" id="stats"><div class="hw-skeleton" style="height:70px"></div></div>
   <div id="conflicts"></div>
   <div class="card card-pad" id="table"></div>
-  <h2 class="section-title" data-i18n="freeTitle"></h2>
+  <h2 class="section-head" data-i18n="freeTitle"></h2>
+  <p class="tiny muted" data-i18n="freeHint"></p>
   <div class="free" id="free"></div>
+  <script src="live.js"></script>
   <script src="lib.js"></script>
   <script src="app.js"></script>
 </body>

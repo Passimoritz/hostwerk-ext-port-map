@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="/ext-sdk.js"></script>
   <style>
-    .big { font-size: 26px; font-weight: 700; }
+    .big { font-size: var(--fs-2xl); font-weight: 700; }
   </style>
 </head>
 <body>
   <div class="muted small" data-i18n="widgetTitle"></div>
-  <div class="big" id="n">–</div>
+  <div class="big" id="n" aria-live="polite"><span class="hw-skeleton" style="display:inline-block;width:32px;height:24px"></span></div>
   <div id="list"></div>
+  <script src="../page/live.js"></script>
   <script src="../page/lib.js"></script>
   <script src="widget.js"></script>
 </body>
