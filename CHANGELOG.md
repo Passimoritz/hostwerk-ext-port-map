@@ -1,3 +1,9 @@
+## 1.4.0
+
+- “Change port” works right here: Hostwerk gives the stopped service a port that is really free (permission `change:ports`, Hostwerk asks first) and the page shows old → new – on every conflict (one button per service) and in the list for every stopped service. No more jump to Hostwerk's port check. / „Port ändern“ geht direkt hier: Hostwerk gibt dem gestoppten Dienst einen wirklich freien Port (Recht `change:ports`, Hostwerk fragt vorher), die Seite zeigt alt → neu – bei jedem Konflikt (ein Knopf je Dienst) und in der Liste bei jedem gestoppten Dienst. Kein Sprung mehr zu Hostwerks Port-Prüfung.
+- “Is this port free?”: asks Hostwerk (`/system/ports/free`) – free, set for a Hostwerk service, or taken by which program. / „Ist dieser Port frei?“: fragt Hostwerk (`/system/ports/free`) – frei, für einen Hostwerk-Dienst eingetragen oder von welchem Programm belegt.
+- Needs Hostwerk 3.0 (SDK 3.0). / Braucht Hostwerk 3.0 (SDK 3.0).
+
 ## 1.3.0
 
 - A port that is set twice counts once – in the list, the counters and the tile – and names every service that wants it. / Ein doppelt eingetragener Port zählt einmal – in der Liste, den Kennzahlen und der Kachel – und nennt alle Dienste, die ihn wollen.

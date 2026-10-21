@@ -53,3 +53,24 @@ test('Docker-Apps erkennen', () => {
   assert.deepStrictEqual([...P.dockerIds([{ id: 'a', kind: 'docker' }, { id: 'b', kind: 'node' }])], ['a']);
   assert.strictEqual(P.dockerIds(null).size, 0);
 });
+
+test('Port ändern: nur gestoppte Hostwerk-Dienste, genau dieser Dienst und dieses Feld (Docker-Apps als „app“)', () => {
+  const P2 = require('../page/lib.js');
+  const web = { kind: 'web', fixKind: 'web', id: 'w1', field: 'httpsPort', port: 8443, running: false, status: 'blocked' };
+  assert.strictEqual(P2.canFix(web), true);
+  assert.deepStrictEqual(P2.fixBody(web), { kind: 'web', id: 'w1', field: 'httpsPort' });
+  assert.deepStrictEqual(P2.fixBody({ kind: 'docker', fixKind: 'app', id: 'a', field: 'port' }), { kind: 'app', id: 'a', field: 'port' });
+  assert.strictEqual(P2.canFix({ ...web, running: true }), false, 'running first stop');
+  assert.strictEqual(P2.canFix({ kind: 'hostwerk', id: 'ui', field: null, port: 3000 }), false, 'Hostwerk itself not');
+  assert.strictEqual(P2.canFix({ kind: 'udp', port: 19132, name: 'Router' }), false, 'router-only rows not');
+});
+
+test('Frei-Prüfung: Eingabe und Urteil aus /system/ports/free', () => {
+  const P2 = require('../page/lib.js');
+  assert.strictEqual(P2.parsePort(' 8080 '), 8080);
+  for (const bad of ['', '0', '65536', '80.5', 'abc', null]) assert.strictEqual(P2.parsePort(bad), null, String(bad));
+  assert.deepStrictEqual(P2.freeVerdict({ port: 9001, free: true, by: null, hostwerk: [] }), { state: 'free', names: [], by: null });
+  assert.deepStrictEqual(P2.freeVerdict({ free: true, hostwerk: [{ name: 'Shop' }] }).state, 'reserved');
+  assert.deepStrictEqual(P2.freeVerdict({ free: false, by: { name: 'Skype' }, hostwerk: [] }), { state: 'taken', names: [], by: 'Skype' });
+  assert.deepStrictEqual(P2.freeVerdict({ free: false, by: 'httpd.exe', hostwerk: [{ name: 'Shop' }] }), { state: 'ours', names: ['Shop'], by: 'httpd.exe' });
+});

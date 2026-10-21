@@ -10,7 +10,8 @@ An official [Hostwerk](https://github.com/Passimoritz/hostwerk-public) extension
 
 - Every port of every service with its protocol (TCP/UDP), problems first; Docker containers as their own area
 - Conflicts explained – a port set twice counts once and names every service that wants it
-- “Change port” on every conflict: opens Hostwerk’s port check, where one click gives the service a port that is really free
+- “Change port” right here – on every conflict and for every stopped service in the list: Hostwerk gives the service a port that is really free (asks first) and the page shows old → new
+- “Is this port free?” – asks Hostwerk: free, set for a Hostwerk service, or taken by which program
 - “From outside” column: which ports the router forwards to this computer (with the “Router & port forwarding” extension), plus public UDP ports such as Bedrock
 - Free port suggestions for web, databases, Minecraft and other – without ports Hostwerk assigned, the router uses or other programs typically take; one click copies
 - Dashboard tile with the number of conflicts
@@ -23,7 +24,8 @@ In Hostwerk: **Apps → Extensions → Marketplace** → “Port map” → Inst
 
 ## Permissions
 
-- Read system ports
+- Read system ports (also “is this port free?”)
+- Change ports (`change:ports`) – move a stopped service to a free port, **Hostwerk asks every time**
 - Read the router (forwardings) – without the router extension the column simply stays away
 - Read apps (to recognise Docker containers)
 

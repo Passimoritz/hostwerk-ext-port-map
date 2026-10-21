@@ -96,6 +96,27 @@
   /** Docker-Apps erkennen: App-ID → true, wenn die App ein Docker-Container ist (/apps, Art „docker“). */
   function dockerIds(apps) { return new Set((Array.isArray(apps) ? apps : []).filter((a) => a && (a.kind === 'docker' || a.docker || a.image)).map((a) => a.id)); }
   /** Wo lässt sich der Port ändern? Hostwerks Port-Prüfung hat für jeden Konflikt „Port ändern“ (prüft den neuen Port wirklich). */
-  const FIX_ROUTE = '/system/zustand/ports';
-  return { sorted, conflicts, suggest, area, counts, forwarded, udpRows, dockerIds, proto, WELL_KNOWN, FIX_ROUTE };
+  /* ---------- Port ändern und Frei-Prüfung direkt (SDK 2.10: change:ports, /system/ports/free) ---------- */
+  /** Arten, deren Port Hostwerk umstellen kann (POST /system/ports/fix) – Docker-Apps zählen als „app“. */
+  const FIXABLE = new Set(['web', 'db', 'mc', 'mail', 'app']);
+  /** Lässt sich der Port dieses Eintrags hier umstellen? Nur gestoppte Hostwerk-Dienste (laufende erst stoppen). */
+  function canFix(p) { const k = p && (p.fixKind || p.kind); return !!p && !p.running && FIXABLE.has(k) && !!p.id && !!p.field; }
+  /** Anfrage für POST /system/ports/fix – genau dieser Dienst und dieses Feld (nicht „irgendwer mit dem Port“). */
+  function fixBody(p) { return { kind: p.fixKind || p.kind, id: p.id, field: p.field }; }
+  /** Eingabe → Port 1–65535 oder null */
+  function parsePort(v) { const n = Number(String(v == null ? '' : v).trim()); return Number.isInteger(n) && n >= 1 && n <= 65535 ? n : null; }
+  /**
+   * Antwort von GET /system/ports/free?port= → Urteil für die Anzeige:
+   *   free      frei und von keinem Hostwerk-Dienst eingetragen
+   *   reserved  gerade frei, aber ein (gestoppter) Hostwerk-Dienst ist darauf eingetragen
+   *   ours      belegt – ein Hostwerk-Dienst ist darauf eingetragen (läuft vermutlich; by = Programm)
+   *   taken     belegt von einem anderen Programm (by = Name, wenn bekannt)
+   */
+  function freeVerdict(r) {
+    const hw = (r && Array.isArray(r.hostwerk) ? r.hostwerk : []).map((x) => x.name).filter(Boolean);
+    const by = r && r.by ? (typeof r.by === 'string' ? r.by : r.by.name || r.by.process || null) : null;
+    if (r && r.free) return { state: hw.length ? 'reserved' : 'free', names: hw, by: null };
+    return { state: hw.length ? 'ours' : 'taken', names: hw, by };
+  }
+  return { sorted, conflicts, suggest, area, counts, forwarded, udpRows, dockerIds, proto, WELL_KNOWN, canFix, fixBody, parsePort, freeVerdict };
 }));

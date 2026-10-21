@@ -10,7 +10,8 @@ Eine offizielle Erweiterung für [Hostwerk](https://github.com/Passimoritz/hostw
 
 - Alle Ports aller Dienste mit Protokoll (TCP/UDP), Probleme zuerst; Docker-Container als eigener Bereich
 - Konflikte erklärt – ein doppelt eingetragener Port zählt einmal und nennt alle Dienste, die ihn wollen
-- „Port ändern“ bei jedem Konflikt: öffnet Hostwerks Port-Prüfung, dort bekommt der Dienst mit einem Klick einen wirklich freien Port
+- „Port ändern“ direkt hier – bei jedem Konflikt und für jeden gestoppten Dienst in der Liste: Hostwerk gibt dem Dienst einen wirklich freien Port (fragt vorher), die Seite zeigt alt → neu
+- „Ist dieser Port frei?“ – fragt Hostwerk: frei, für einen Hostwerk-Dienst eingetragen oder von welchem Programm belegt
 - Spalte „Von außen“: welche Ports der Router an diesen Rechner weiterleitet (mit der Erweiterung „Router & Portfreigaben“), dazu öffentliche UDP-Ports wie Bedrock
 - Freie Ports als Vorschlag für Web, Datenbanken, Minecraft und Sonstiges – ohne Ports, die Hostwerk vergeben hat, die der Router belegt oder die typischerweise andere Programme nutzen; ein Klick kopiert
 - Kachel für die Übersicht mit der Zahl der Konflikte
@@ -23,7 +24,8 @@ In Hostwerk: **Apps → Erweiterungen → Marktplatz** → „Port-Übersicht“
 
 ## Rechte
 
-- Ports des Systems lesen
+- Ports des Systems lesen (auch „Ist dieser Port frei?“)
+- Ports ändern (`change:ports`) – gestoppten Dienst auf einen freien Port umstellen, **Hostwerk fragt jedes Mal**
 - Router lesen (Freigaben) – ohne Router-Erweiterung bleibt die Spalte einfach weg
 - Apps lesen (Docker-Container erkennen)
 

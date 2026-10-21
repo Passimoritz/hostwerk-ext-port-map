@@ -14,6 +14,11 @@
     .free { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--sp-3); }
     .free-card { gap: var(--sp-2); }
     .free-list { flex-wrap: wrap; }
+    .check { margin-bottom: var(--sp-3); gap: var(--sp-2); }
+    .check-form { flex-wrap: wrap; }
+    .check-input { width: 9em; }
+    .fix-cell { text-align: right; white-space: nowrap; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   </style>
 </head>
 <body>
@@ -23,6 +28,14 @@
   <div class="card card-pad" id="table"></div>
   <h2 class="section-head" data-i18n="freeTitle"></h2>
   <p class="tiny muted" data-i18n="freeHint"></p>
+  <div class="card card-pad stack check">
+    <form class="row-tight check-form" id="check-form">
+      <label class="small" for="check-port" data-i18n="checkLabel"></label>
+      <input class="input mono check-input" id="check-port" inputmode="numeric" autocomplete="off" placeholder="8080">
+      <button type="submit" class="btn sm" data-i18n="check"></button>
+    </form>
+    <div id="check-result" aria-live="polite"></div>
+  </div>
   <div class="free" id="free"></div>
   <script src="live.js"></script>
   <script src="lib.js"></script>
